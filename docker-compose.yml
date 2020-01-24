@@ -1,12 +1,12 @@
 version: '2'
 services:
   zookeeper:
-    container_name: zookeeper_v1
+    container_name: zookeeper_basic
     image: wurstmeister/zookeeper
     ports:
       - "2181:2181"
   kafka:
-    container_name: kafka_v1
+    container_name: kafka_basic
     image: wurstmeister/kafka
     ports:
       - "9092"
@@ -15,4 +15,24 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  elk:
+    container_name: elk_basic
+    image: blacktop/elastic-stack
+  mysql:
+    container_name: mysql_basic
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'mysql_user'
+      MYSQL_PASSWORD: 'mysql_user_pw'
+      MYSQL_ROOT_PASSWORD: 'root_pw'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - db-data:/var/lib/mysql
 
+volumes:
+  db-data:
