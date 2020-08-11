@@ -35,7 +35,7 @@ public class ETLRunner {
   public void doWork() {
     String brokersEndpoints = "172.17.0.1:32771"; // getBrokerEndpointsField();
     try {
-//      runProducer(brokersEndpoints);
+      //      runProducer(brokersEndpoints);
       runConsumer(brokersEndpoints);
     } catch (Exception e) {
       e.printStackTrace();

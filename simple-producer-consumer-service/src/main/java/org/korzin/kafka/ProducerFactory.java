@@ -13,15 +13,15 @@ import java.util.Properties;
 @Singleton
 public class ProducerFactory {
 
-    @Configuration("kafka.client-id")
-    String kafkaClientId;
+  @Configuration("kafka.client-id")
+  private String kafkaClientId;
 
-    public Producer<Long, String> createProducer(String kafkaBrokers) {
-        Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBrokers);
-        props.put(ProducerConfig.CLIENT_ID_CONFIG, kafkaBrokers);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        return new KafkaProducer<>(props);
-    }
+  public Producer<Long, String> createProducer(String kafkaBrokers) {
+    Properties props = new Properties();
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBrokers);
+    props.put(ProducerConfig.CLIENT_ID_CONFIG, kafkaBrokers);
+    props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    return new KafkaProducer<>(props);
+  }
 }
